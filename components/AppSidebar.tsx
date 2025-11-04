@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import {
   Sidebar,
   SidebarContent,
@@ -31,6 +31,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@radix-ui/react-dropdown-menu";
+import { usePathname } from "next/navigation";
 
 const items = [
   {
@@ -76,20 +77,28 @@ const items = [
 ];
 
 const AppSidebar = () => {
+  const pathname = usePathname();
+  console.log(pathname);
   return (
     <div className="pt-12">
       <Sidebar collapsible="icon" className="">
         <SidebarContent>
           <SidebarGroup>
-            <SidebarGroupLabel>Applications</SidebarGroupLabel>
+            <SidebarGroupLabel>Sahifalar</SidebarGroupLabel>
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton className="text-lg" asChild>
-                    <Link href={item.url}>
-                      <item.icon className="text-lg" /> {item.title}
-                    </Link>
-                  </SidebarMenuButton>
+                  <Link
+                    href={item.url}
+                    className={`flex items-center gap-3 rounded-md transition-colors py-2 px-3 w-full ${
+                      pathname === item.url
+                        ? "bg-blue-500 text-white"
+                        : "hover:bg-gray-100 text-gray-700"
+                    }`}
+                  >
+                    <item.icon className="w-5 h-5" />
+                    <span>{item.title}</span>
+                  </Link>
                 </SidebarMenuItem>
               ))}
             </SidebarMenu>

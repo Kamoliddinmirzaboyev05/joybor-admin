@@ -5,7 +5,7 @@ import { Check } from "lucide-react";
 
 const StudentProfile = () => {
   return (
-    <div className="container flex justify-center">
+    <div className="container flex justify-center items-center">
       <div className="profileBloc mt-2 w-full bg-white p-6 rounded-lg shadow-md">
         <div className="profileBlockTop flex items-center flex-wrap justify-between">
           <Button
@@ -22,13 +22,13 @@ const StudentProfile = () => {
             <Button />
           </div>
         </div>
-        <div className="row gap-10 mt-2 flex md:flex-col lg:flex-row items-center justify-start ">
+        <div className="row gap-10 mt-2 grid md:grid-cols-[150px_1fr] ">
           <div className="profileImgBox shado-md md:w-50 md:h-50 lg:w-40 lg:h-40 rounded flex items-center bg-gray-200 justify-center border overflow-hidden border-gray-300">
             <h1 className="text-8xl font-bold text-center text-gray-700">MK</h1>
           </div>
           <div>
             <div className="div w-full">
-              <div className="inputRow grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 lg:w-220 gap-6">
+              <div className="inputRow grid  grid-cols-1  lg:grid-cols-2  gap-6">
                 <div className="inputCol flex flex-col gap-2 mb-4">
                   <label className="text-sm text-gray-500">Ismi</label>
                   <input

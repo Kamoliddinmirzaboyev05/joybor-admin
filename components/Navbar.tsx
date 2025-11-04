@@ -14,10 +14,16 @@ import {
 import { Button } from "./ui/button";
 import { useTheme } from "next-themes";
 import { SidebarTrigger } from "./ui/sidebar";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const { setTheme } = useTheme();
-  
+  const router = useRouter();
+  const toProfile = (link: string) => {
+    router.push(`/${link}`);
+  };
+
   return (
     <nav className="sticky top-0 z-40 border-b bg-white dark:bg-background">
       <div className="w-full py-4 px-4 md:px-8 flex items-center justify-between">
@@ -25,7 +31,9 @@ const Navbar = () => {
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2">
             <Image src="/logo.svg" alt="JoyBor logo" width={40} height={40} />
-            <span className="font-semibold text-lg hidden sm:inline">Joy Bor Admin</span>
+            <span className="font-semibold text-lg hidden sm:inline">
+              Joy Bor Admin
+            </span>
           </div>
         </div>
 
@@ -68,11 +76,19 @@ const Navbar = () => {
             <DropdownMenuContent className="w-56" align="end" sideOffset={10}>
               <DropdownMenuLabel>My Account</DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => {
+                  toProfile("profile");
+                }}
+              >
                 <User className="w-[1.4rem] h-[1.4rem] mr-2" />
-                Profile
+                <Link href={"/profile"}>Profile</Link>
               </DropdownMenuItem>
-              <DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => {
+                  toProfile("settings");
+                }}
+              >
                 <Settings className="w-[1.4rem] h-[1.4rem] mr-2" />
                 Settings
               </DropdownMenuItem>
