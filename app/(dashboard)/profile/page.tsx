@@ -1,6 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
-import { BadgeCheck, Check, StepBack } from "lucide-react";
+import { BadgeCheck, StepBack } from "lucide-react";
 
 function Profile() {
   return (
@@ -23,8 +23,8 @@ function Profile() {
             <Button>Tahrirlash</Button>
           </div>
         </div>
-        <div className="row gap-10 mt-2 grid grid-cols-1 lg:grid-cols-[150px_1fr] dark:text-foreground ">
-          <div className="profileImgBox shadow-md h-80 lg:w-40 lg:h-40  rounded flex items-center bg-gray-200 justify-center border overflow-hidden border-gray-300 dark:bg-input dark:border-sidebar-border ">
+        <div className="row gap-10 mt-2 grid grid-cols-1 dark:text-foreground ">
+          <div className="profileImgBox shadow-md h-80 lg:w-40 lg:h-40  rounded-full m-auto flex items-center bg-gray-200 justify-center border overflow-hidden border-gray-300 dark:bg-input dark:border-sidebar-border ">
             <h1 className="text-8xl font-bold text-center text-gray-700 dark:text-foreground">
               AP
             </h1>
@@ -59,7 +59,7 @@ function Profile() {
               <div className="inputRow grid  grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-6">
                 <div className="inputCol flex flex-col gap-2 mb-4">
                   <label className="text-sm text-gray-500  dark:text-foreground">
-                    Ismi
+                    Telegram manzili:
                   </label>
                   <input
                     disabled
@@ -71,7 +71,7 @@ function Profile() {
 
                 <div className="inputCol flex flex-col gap-2 mb-4">
                   <label className="text-sm text-gray-500 dark:text-foreground">
-                    Familiyasi
+                    Telefon raqami:
                   </label>
                   <input
                     disabled
@@ -85,10 +85,10 @@ function Profile() {
           </div>
         </div>
         <div className="div">
-          <div className="inputRow grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="inputRow grid grid-cols-1 sm:grid-cols-2  gap-6">
             <div className="inputCol flex flex-col gap-2 mb-4">
               <label className="text-sm text-gray-500 dark:text-foreground">
-                Fakulteti
+                Login:
               </label>
               <input
                 disabled
@@ -100,75 +100,7 @@ function Profile() {
 
             <div className="inputCol flex flex-col gap-2 mb-4">
               <label className="text-sm text-gray-500 dark:text-foreground">
-                Yo&apos;nalishi
-              </label>
-              <input
-                disabled
-                className="border dark:bg-input dark:border-sidebar-border py-2 px-4 rounded bg-gray-100 border-gray-300 w-full"
-                type="text"
-                placeholder="-"
-              />
-            </div>
-
-            <div className="inputCol flex flex-col gap-2 mb-4">
-              <label className="text-sm text-gray-500 dark:text-foreground">
-                Guruhi
-              </label>
-              <input
-                disabled
-                className="border dark:bg-input dark:border-sidebar-border py-2 px-4 rounded bg-gray-100 border-gray-300 w-full"
-                type="text"
-                placeholder="-"
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="div">
-          <div className="inputRow grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="inputCol flex flex-col gap-2 mb-4">
-              <label className="text-sm text-gray-500 dark:text-foreground">
-                Passport ID{" "}
-              </label>
-              <input
-                disabled
-                className="border dark:bg-input dark:border-sidebar-border py-2 px-4 rounded bg-gray-100 border-gray-300 w-full"
-                type="text"
-                placeholder="-"
-              />
-            </div>
-
-            <div className="inputCol flex flex-col gap-2 mb-4">
-              <label className="text-sm text-gray-500 dark:text-foreground">
-                Passport JSHSHIR
-              </label>
-              <input
-                disabled
-                className="border dark:bg-input dark:border-sidebar-border py-2 px-4 rounded bg-gray-100 border-gray-300 w-full"
-                type="text"
-                placeholder="-"
-              />
-            </div>
-
-            <div className="inputCol flex flex-col gap-2 mb-4">
-              <label className="text-sm text-gray-500 dark:text-foreground">
-                Qabul qilingan sana
-              </label>
-              <input
-                disabled
-                className="border dark:bg-input dark:border-sidebar-border py-2 px-4 rounded bg-gray-100 border-gray-300 w-full"
-                type="text"
-                placeholder="-"
-              />
-            </div>
-          </div>
-        </div>
-        <div className="div">
-          <div className="inputRow grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="inputCol flex flex-col gap-2 mb-4">
-              <label className="text-sm text-gray-500 dark:text-foreground">
-                {" "}
-                Umumiy to&apos;lov
+                Murojaat Vaqti:
               </label>
               <input
                 disabled

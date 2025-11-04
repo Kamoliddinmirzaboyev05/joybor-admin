@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { LogOut, Moon, Settings, Sun, User } from "lucide-react";
 import Image from "next/image";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
@@ -14,12 +15,17 @@ import {
 import { Button } from "./ui/button";
 import { useTheme } from "next-themes";
 import { SidebarTrigger } from "./ui/sidebar";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 const Navbar = () => {
   const { setTheme } = useTheme();
   const router = useRouter();
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const toProfile = (link: string) => {
     router.push(`/${link}`);
   };
@@ -30,7 +36,13 @@ const Navbar = () => {
         {/* LEFT */}
         <div className="flex items-center gap-3">
           <div className="flex items-center gap-2">
-            <Image src="/logo.svg" alt="JoyBor logo" width={40} height={40} />
+            <Image 
+              src="/logo.svg" 
+              alt="JoyBor logo" 
+              width={40} 
+              height={40}
+              style={{ width: 'auto', height: '40px' }}
+            />
             <span className="font-semibold text-lg hidden sm:inline">
               Joy Bor Admin
             </span>
@@ -41,26 +53,28 @@ const Navbar = () => {
         <div className="flex items-center gap-3">
           {/* Theme Toggle */}
           <SidebarTrigger />
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="icon">
-                <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
-                <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
-                <span className="sr-only">Toggle theme</span>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem onClick={() => setTheme("light")}>
-                Light
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme("dark")}>
-                Dark
-              </DropdownMenuItem>
-              <DropdownMenuItem onClick={() => setTheme("system")}>
-                System
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          {mounted && (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" size="icon">
+                  <Sun className="h-[1.2rem] w-[1.2rem] scale-100 rotate-0 transition-all dark:scale-0 dark:-rotate-90" />
+                  <Moon className="absolute h-[1.2rem] w-[1.2rem] scale-0 rotate-90 transition-all dark:scale-100 dark:rotate-0" />
+                  <span className="sr-only">Toggle theme</span>
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end">
+                <DropdownMenuItem onClick={() => setTheme("light")}>
+                  Light
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("dark")}>
+                  Dark
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={() => setTheme("system")}>
+                  System
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          )}
 
           {/* User Menu */}
           <DropdownMenu>
@@ -82,7 +96,7 @@ const Navbar = () => {
                 }}
               >
                 <User className="w-[1.4rem] h-[1.4rem] mr-2" />
-                <Link href={"/profile"}>Profile</Link>
+                Profile
               </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={() => {

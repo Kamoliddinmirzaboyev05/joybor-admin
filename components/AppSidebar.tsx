@@ -4,9 +4,7 @@ import {
   SidebarContent,
   SidebarFooter,
   SidebarGroup,
-  SidebarGroupContent,
   SidebarGroupLabel,
-  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -23,14 +21,13 @@ import {
   ClipboardList,
   User2,
 } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
-import { DropdownMenu } from "./ui/dropdown-menu";
 import {
+  DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@radix-ui/react-dropdown-menu";
+} from "./ui/dropdown-menu";
 import { usePathname } from "next/navigation";
 
 const items = [
@@ -51,7 +48,7 @@ const items = [
   },
   {
     title: "Yotoqxona",
-    url: "dormitory",
+    url: "/dormitory",
     icon: Building2,
   },
   {
@@ -70,7 +67,7 @@ const items = [
     icon: ClipboardList,
   },
   {
-    title: "Settings",
+    title: "Sozlamalar",
     url: "/settings",
     icon: Settings,
   },
@@ -78,7 +75,6 @@ const items = [
 
 const AppSidebar = () => {
   const pathname = usePathname();
-  console.log(pathname);
   return (
     <div className="pt-12">
       <Sidebar collapsible="icon" className="">
@@ -88,16 +84,18 @@ const AppSidebar = () => {
             <SidebarMenu>
               {items.map((item) => (
                 <SidebarMenuItem key={item.title}>
-                  <Link
-                    href={item.url}
-                    className={`flex items-center gap-3 rounded-md transition-colors py-2 px-3 w-full ${
-                      pathname === item.url
-                        ? "bg-blue-500 text-white"
-                        : "hover:bg-gray-100 text-gray-700"
-                    }`}
-                  >
-                    <item.icon className="w-5 h-5" />
-                    <span>{item.title}</span>
+                  <Link href={item.url}>
+                    <SidebarMenuButton
+                      tooltip={item.title.toUpperCase()}
+                      className={`text-md flex items-center gap-3 w-full ${
+                        pathname === item.url
+                          ? "bg-blue-500 text-white hover:bg-blue-500/90 dark:hover:bg-blue-500/90"
+                          : "hover:bg-gray-100 dark:text-white dark:hover:bg-gray-800 text-gray-700"
+                      }`}
+                    >
+                      <item.icon className="w-5 h-5" />
+                      <span>{item.title}</span>
+                    </SidebarMenuButton>
                   </Link>
                 </SidebarMenuItem>
               ))}

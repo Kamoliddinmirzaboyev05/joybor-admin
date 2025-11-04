@@ -72,8 +72,8 @@ const Students = () => {
     <div className="mt-6">
       <div className="w-full">
         <div className="pageTitle">
-          <h1 className="text-3xl font-semibold">Talabalar</h1>
-          <p className="text-md text-gray-600">
+          <h1 className="text-3xl font-semibold dark:text-foreground">Talabalar</h1>
+          <p className="text-md text-gray-600 dark:text-muted-foreground">
             Yotoqxonada yashovchi talabalar ro&apos;yxati
           </p>
         </div>
@@ -101,7 +101,7 @@ const Students = () => {
           <div className="flex justify-between items-center p-4 border-b">
             <form className="searchForm" action="#">
               <input
-                className="border border-gray-400 p-2 rounded m-4 w-64 "
+                className="border border-gray-400 dark:border-sidebar-border dark:bg-input dark:text-foreground p-2 rounded m-4 w-64 "
                 type="text"
                 placeholder="Qidirish..."
               />
@@ -111,35 +111,35 @@ const Students = () => {
               Yuklab olish
             </button>
           </div>
-          <Table className="bg-white">
+          <Table className="bg-white dark:bg-card">
             <TableHeader>
-              <TableRow className="bg-gray-100 h-16">
-                <TableHead className="text-gray-500 text-md font-semibold">
+              <TableRow className="bg-gray-100 dark:bg-muted h-16">
+                <TableHead className="text-gray-500 dark:text-muted-foreground text-md font-semibold">
                   NO
                 </TableHead>
-                <TableHead className="text-gray-500 text-md font-semibold">
+                <TableHead className="text-gray-500 dark:text-muted-foreground text-md font-semibold">
                   ISM FAMILIYA
                 </TableHead>
-                <TableHead className="text-gray-500 text-md font-semibold">
+                <TableHead className="text-gray-500 dark:text-muted-foreground text-md font-semibold">
                   YO&apos;NALISH
                 </TableHead>
-                <TableHead className="text-gray-500 text-center text-md font-semibold">
+                <TableHead className="text-gray-500 dark:text-muted-foreground text-center text-md font-semibold">
                   XONA
                 </TableHead>
-                <TableHead className="text-gray-500 text-center text-md font-semibold">
+                <TableHead className="text-gray-500 dark:text-muted-foreground text-center text-md font-semibold">
                   GURUH
                 </TableHead>
-                <TableHead className="text-gray-500 text-center text-md font-semibold">
+                <TableHead className="text-gray-500 dark:text-muted-foreground text-center text-md font-semibold">
                   STATUS
                 </TableHead>
-                <TableHead className="text-gray-500 text-md text-center font-semibold">
+                <TableHead className="text-gray-500 dark:text-muted-foreground text-md text-center font-semibold">
                   UMUMIY TO&apos;LOV
                 </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {students.map((s) => (
-                <TableRow key={s.id} className="hover:bg-gray-50 h-16">
+                <TableRow key={s.id} className="hover:bg-gray-50 dark:hover:bg-muted/50 h-16">
                   <TableCell>{s.id}</TableCell>
                   <TableCell className="font-semibold min-w-[150px] hover:underline text-blue-600 text-md">
                     <Link href={`/students/${s.id}`}>{s.fio}</Link>

@@ -15,8 +15,11 @@ export default function DashboardLayout({
   const router = useRouter();
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (!token) router.push("/login");
+    // Check if we're on the client side before accessing localStorage
+    if (typeof window !== 'undefined') {
+      const token = localStorage.getItem("token");
+      if (!token) router.push("/login");
+    }
   }, [router]);
 
   return (
