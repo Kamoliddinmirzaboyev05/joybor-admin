@@ -1,4 +1,6 @@
 "use client";
+
+import * as React from "react";
 import {
   Sidebar,
   SidebarContent,
@@ -8,10 +10,10 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 import {
   UserRoundCheck,
-  ChevronUp,
   LayoutDashboard,
   CreditCard,
   Building2,
@@ -19,16 +21,11 @@ import {
   FileUser,
   Users,
   ClipboardList,
-  User2,
+  GraduationCap,
 } from "lucide-react";
 import Link from "next/link";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "./ui/dropdown-menu";
 import { usePathname } from "next/navigation";
+import { motion, AnimatePresence } from "motion/react";
 
 const items = [
   {
@@ -73,56 +70,123 @@ const items = [
   },
 ];
 
-const AppSidebar = () => {
+export default function AppSidebar() {
   const pathname = usePathname();
+  const { state } = useSidebar();
+  const isCollapsed = state === "collapsed";
+
   return (
     <div className="pt-12">
-      <Sidebar collapsible="icon" className="">
+      <Sidebar collapsible="icon" className="border-r">
         <SidebarContent>
           <SidebarGroup>
-            <SidebarGroupLabel>Sahifalar</SidebarGroupLabel>
+            <AnimatePresence>
+              {!isCollapsed && (
+                <motion.div
+                  initial={{ opacity: 0, height: 0 }}
+                  animate={{ opacity: 1, height: "auto" }}
+                  exit={{ opacity: 0, height: 0 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <SidebarGroupLabel>Sahifalar</SidebarGroupLabel>
+                </motion.div>
+              )}
+            </AnimatePresence>
             <SidebarMenu>
-              {items.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <Link href={item.url}>
-                    <SidebarMenuButton
-                      tooltip={item.title.toUpperCase()}
-                      className={`text-md flex items-center gap-3 w-full ${
-                        pathname === item.url
-                          ? "bg-blue-500 text-white hover:bg-blue-500/90 dark:hover:bg-blue-500/90"
-                          : "hover:bg-gray-100 dark:text-white dark:hover:bg-gray-800 text-gray-700"
-                      }`}
+              {items.map((item, index) => {
+                const isActive = pathname === item.url;
+                return (
+                  <SidebarMenuItem key={item.title}>
+                    <motion.div
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.05, duration: 0.2 }}
                     >
-                      <item.icon className="w-5 h-5" />
-                      <span>{item.title}</span>
-                    </SidebarMenuButton>
-                  </Link>
-                </SidebarMenuItem>
-              ))}
+                      <SidebarMenuButton
+                        asChild
+                        tooltip={item.title}
+                        isActive={isActive}
+                        size="lg"
+                        className={`relative transition-all duration-200 hover:bg-accent ${
+                          isActive 
+                            ? "bg-blue-50 text-blue-600 border-r-2 border-blue-600 dark:bg-blue-950 dark:text-blue-400 dark:border-blue-400" 
+                            : "hover:text-foreground"
+                        }`}
+                      >
+                        <Link href={item.url} className="flex items-center gap-2 w-full">
+                          <motion.div
+                            whileHover={{ scale: 1.1 }}
+                            whileTap={{ scale: 0.95 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                          >
+                            <item.icon className={`size-4 ${isActive ? "text-blue-600 dark:text-blue-400" : ""}`} />
+                          </motion.div>
+                          <AnimatePresence>
+                            {!isCollapsed && (
+                              <motion.span
+                                initial={{ opacity: 0, width: 0 }}
+                                animate={{ opacity: 1, width: "auto" }}
+                                exit={{ opacity: 0, width: 0 }}
+                                transition={{ duration: 0.2 }}
+                                className="truncate"
+                              >
+                                {item.title}
+                              </motion.span>
+                            )}
+                          </AnimatePresence>
+                          {isActive && (
+                            <motion.div
+                              layoutId="activeIndicator"
+                              className="absolute inset-0 bg-blue-100 dark:bg-blue-900/20 rounded-md -z-10"
+                              initial={false}
+                              transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                            />
+                          )}
+                        </Link>
+                      </SidebarMenuButton>
+                    </motion.div>
+                  </SidebarMenuItem>
+                );
+              })}
             </SidebarMenu>
           </SidebarGroup>
         </SidebarContent>
+        
         <SidebarFooter>
           <SidebarMenu>
             <SidebarMenuItem>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <SidebarMenuButton className="text-lg">
-                    <User2 /> John Doe <ChevronUp className="ml-auto" />
-                  </SidebarMenuButton>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem>Account</DropdownMenuItem>
-                  <DropdownMenuItem>Settings</DropdownMenuItem>
-                  <DropdownMenuItem>Log out</DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <motion.div
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 400, damping: 17 }}
+              >
+                <SidebarMenuButton 
+                  tooltip="Universitet Yotoqxona"
+                  size="lg"
+                  className="transition-all duration-200"
+                >
+                  <div className="flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground">
+                    <GraduationCap className="size-4" />
+                  </div>
+                  <AnimatePresence>
+                    {!isCollapsed && (
+                      <motion.div
+                        initial={{ opacity: 0, width: 0 }}
+                        animate={{ opacity: 1, width: "auto" }}
+                        exit={{ opacity: 0, width: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="grid flex-1 text-left text-sm leading-tight"
+                      >
+                        <span className="truncate font-semibold">Universitet</span>
+                        <span className="truncate text-xs">Yotoqxona</span>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </SidebarMenuButton>
+              </motion.div>
             </SidebarMenuItem>
           </SidebarMenu>
         </SidebarFooter>
       </Sidebar>
     </div>
   );
-};
-
-export default AppSidebar;
+}

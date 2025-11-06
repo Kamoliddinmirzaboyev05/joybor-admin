@@ -1,6 +1,6 @@
 import React from 'react'
 
-function AttendancePage() {
+export default function AttendancePage() {
   return (
     <div className="mt-6">
       <div className="pageTitle">
@@ -16,4 +16,3 @@ function AttendancePage() {
   )
 }
 
-export default AttendancePage

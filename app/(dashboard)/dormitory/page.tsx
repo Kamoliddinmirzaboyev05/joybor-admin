@@ -6,6 +6,7 @@ import { EllipsisVertical, Filter } from "lucide-react";
 // react-select ni faqat clientda ishlashi uchun
 const CreatableSelect = dynamic(() => import("react-select/creatable"), {
   ssr: false,
+  loading: () => <div className="w-36 h-10 bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
 });
 const Dormitory = () => {
   const genderOptions = [
@@ -57,12 +58,14 @@ const Dormitory = () => {
           </h2>
           <CreatableSelect
             className="w-36"
+            classNamePrefix="react-select"
             placeholder="Jins"
             isClearable
             options={genderOptions}
           />
           <CreatableSelect
             className="w-36"
+            classNamePrefix="react-select"
             placeholder="Xona holati"
             isClearable
             options={roomStatusOptions}
@@ -108,7 +111,7 @@ const Dormitory = () => {
                       return (
                         <div
                           key={room.id}
-                          className="px-9 py-3 border border-gray-300 dark:border-sidebar-border rounded p-4 bg-[#f9fafb] dark:bg-muted shadow flex flex-col justify-center items-center w-fit"
+                          className="px-9 py-3 border border-gray-300 dark:border-sidebar-border rounded p-4 bg-[#f9fafb] dark:bg-background shadow flex flex-col justify-center items-center w-fit"
                         >
                           <p className="text-md font-semibold pb-4 dark:text-foreground">
                             {room.name}

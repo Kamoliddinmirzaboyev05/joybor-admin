@@ -1,6 +1,6 @@
 import React from 'react'
 
-function ApplicationsPage() {
+export default function ApplicationsPage() {
   return (
     <div className="mt-6">
       <div className="pageTitle">
@@ -16,4 +16,3 @@ function ApplicationsPage() {
   )
 }
 
-export default ApplicationsPage

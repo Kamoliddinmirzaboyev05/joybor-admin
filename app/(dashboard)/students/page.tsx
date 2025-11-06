@@ -14,6 +14,7 @@ import { Download } from "lucide-react";
 // react-select ni faqat clientda ishlashi uchun
 const CreatableSelect = dynamic(() => import("react-select/creatable"), {
   ssr: false,
+  loading: () => <div className="w-36 h-10 bg-gray-200 dark:bg-gray-700 rounded animate-pulse"></div>
 });
 
 const Students = () => {
@@ -80,18 +81,21 @@ const Students = () => {
         <div className="studentFilters flex gap-4 mt-6 flex-wrap">
           <CreatableSelect
             className="w-36"
+            classNamePrefix="react-select"
             placeholder="Jins"
             isClearable
             options={genderOptions}
           />
           <CreatableSelect
             className="w-44"
-            placeholder="To'lov holati"
+            classNamePrefix="react-select"
+            placeholder="To&apos;lov holati"
             isClearable
             options={paymentOptions}
           />
           <CreatableSelect
             className="w-36"
+            classNamePrefix="react-select"
             placeholder="Xona"
             isClearable
             options={roomOptions}
@@ -113,7 +117,7 @@ const Students = () => {
           </div>
           <Table className="bg-white dark:bg-card">
             <TableHeader>
-              <TableRow className="bg-gray-100 dark:bg-muted h-16">
+              <TableRow className="bg-gray-100 dark:bg-card h-16">
                 <TableHead className="text-gray-500 dark:text-muted-foreground text-md font-semibold">
                   NO
                 </TableHead>

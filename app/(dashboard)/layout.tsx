@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
-import { useRouter } from "next/navigation";
+import { useEffect, useCallback } from "react";
+import { useRouter, usePathname } from "next/navigation";
 import AppSidebar from "@/components/AppSidebar";
 import Navbar from "@/components/Navbar";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
@@ -13,21 +13,27 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   const router = useRouter();
+  const pathname = usePathname();
 
-  useEffect(() => {
-    // Check if we're on the client side before accessing localStorage
+  const checkAuth = useCallback(() => {
     if (typeof window !== 'undefined') {
       const token = localStorage.getItem("token");
-      if (!token) router.push("/login");
+      if (!token && !pathname.includes('/login')) {
+        router.replace("/login");
+      }
     }
-  }, [router]);
+  }, [router, pathname]);
+
+  useEffect(() => {
+    checkAuth();
+  }, [checkAuth]);
 
   return (
     <ThemeProvider
       attribute="class"
       defaultTheme="system"
       enableSystem
-      disableTransitionOnChange
+      storageKey="joybor-theme"
     >
       <SidebarProvider>
         <div className="flex min-h-screen w-full bg-gray-50 dark:bg-background">

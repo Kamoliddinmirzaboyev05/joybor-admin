@@ -1,6 +1,6 @@
 import React from 'react'
 
-function PaymentsPage() {
+export default function PaymentsPage() {
   return (
     <div className="mt-6">
       <div className="pageTitle">
@@ -16,4 +16,3 @@ function PaymentsPage() {
   )
 }
 
-export default PaymentsPage

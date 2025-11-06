@@ -1,6 +1,6 @@
 import React from 'react'
 
-function ReportsPage() {
+export default function ReportsPage() {
   return (
     <div className="mt-6">
       <div className="pageTitle">
@@ -16,4 +16,3 @@ function ReportsPage() {
   )
 }
 
-export default ReportsPage
