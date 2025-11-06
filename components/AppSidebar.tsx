@@ -108,18 +108,31 @@ export default function AppSidebar() {
                         isActive={isActive}
                         size="lg"
                         className={`relative transition-all duration-200 hover:bg-accent ${
-                          isActive 
-                            ? "bg-blue-50 text-blue-600 border-r-2 border-blue-600 dark:bg-blue-950 dark:text-blue-400 dark:border-blue-400" 
+                          isActive
+                            ? "bg-blue-50 text-blue-600 border-r-2 border-blue-600 dark:bg-blue-950 dark:text-blue-400 dark:border-blue-400"
                             : "hover:text-foreground"
                         }`}
                       >
-                        <Link href={item.url} className="flex items-center gap-2 w-full">
+                        <Link
+                          href={item.url}
+                          className="flex items-center gap-2 w-full"
+                        >
                           <motion.div
                             whileHover={{ scale: 1.1 }}
                             whileTap={{ scale: 0.95 }}
-                            transition={{ type: "spring", stiffness: 400, damping: 17 }}
+                            transition={{
+                              type: "spring",
+                              stiffness: 400,
+                              damping: 17,
+                            }}
                           >
-                            <item.icon className={`size-4 ${isActive ? "text-blue-600 dark:text-blue-400" : ""}`} />
+                            <item.icon
+                              className={`size-4 ${
+                                isActive
+                                  ? "text-blue-600 dark:text-blue-400"
+                                  : ""
+                              }`}
+                            />
                           </motion.div>
                           <AnimatePresence>
                             {!isCollapsed && (
@@ -139,7 +152,11 @@ export default function AppSidebar() {
                               layoutId="activeIndicator"
                               className="absolute inset-0 bg-blue-100 dark:bg-blue-900/20 rounded-md -z-10"
                               initial={false}
-                              transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                              transition={{
+                                type: "spring",
+                                stiffness: 500,
+                                damping: 30,
+                              }}
                             />
                           )}
                         </Link>
@@ -151,7 +168,7 @@ export default function AppSidebar() {
             </SidebarMenu>
           </SidebarGroup>
         </SidebarContent>
-        
+
         <SidebarFooter>
           <SidebarMenu>
             <SidebarMenuItem>
@@ -159,7 +176,7 @@ export default function AppSidebar() {
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
-                <SidebarMenuButton 
+                <SidebarMenuButton
                   tooltip="Universitet Yotoqxona"
                   size="lg"
                   className="transition-all duration-200"
@@ -176,7 +193,9 @@ export default function AppSidebar() {
                         transition={{ duration: 0.2 }}
                         className="grid flex-1 text-left text-sm leading-tight"
                       >
-                        <span className="truncate font-semibold">Universitet</span>
+                        <span className="truncate font-semibold">
+                          Universitet
+                        </span>
                         <span className="truncate text-xs">Yotoqxona</span>
                       </motion.div>
                     )}
