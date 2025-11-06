@@ -9,7 +9,8 @@ import {
 } from "@/components/ui/table";
 import Link from "next/link";
 import dynamic from "next/dynamic";
-import { Download } from "lucide-react";
+import { Download, Users } from "lucide-react";
+import { motion } from "motion/react";
 
 // react-select ni faqat clientda ishlashi uchun
 const CreatableSelect = dynamic(() => import("react-select/creatable"), {
@@ -72,13 +73,26 @@ const Students = () => {
   return (
     <div className="mt-6">
       <div className="w-full">
-        <div className="pageTitle">
-          <h1 className="text-3xl font-semibold dark:text-foreground">Talabalar</h1>
+        <motion.div
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="pageTitle"
+        >
+          <h1 className="text-3xl font-semibold dark:text-foreground flex items-center gap-3">
+            <Users className="w-8 h-8" />
+            Talabalar
+          </h1>
           <p className="text-md text-gray-600 dark:text-muted-foreground">
             Yotoqxonada yashovchi talabalar ro&apos;yxati
           </p>
-        </div>
-        <div className="studentFilters flex gap-4 mt-6 flex-wrap">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="studentFilters flex gap-4 mt-6 flex-wrap"
+        >
           <CreatableSelect
             className="w-36"
             classNamePrefix="react-select"
@@ -100,8 +114,13 @@ const Students = () => {
             isClearable
             options={roomOptions}
           />
-        </div>
-        <div className="studentsList border-2 rounded-md mt-6">
+        </motion.div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+          className="studentsList border-2 rounded-md mt-6"
+        >
           <div className="flex justify-between items-center p-4 border-b">
             <form className="searchForm" action="#">
               <input
@@ -142,8 +161,14 @@ const Students = () => {
               </TableRow>
             </TableHeader>
             <TableBody>
-              {students.map((s) => (
-                <TableRow key={s.id} className="hover:bg-gray-50 dark:hover:bg-muted/50 h-16">
+              {students.map((s, index) => (
+                <motion.tr
+                  key={s.id}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.6 + index * 0.1, duration: 0.3 }}
+                  className="hover:bg-gray-50 dark:hover:bg-muted/50 h-16"
+                >
                   <TableCell>{s.id}</TableCell>
                   <TableCell className="font-semibold min-w-[150px] hover:underline text-blue-600 text-md">
                     <Link href={`/students/${s.id}`}>{s.fio}</Link>
@@ -159,11 +184,11 @@ const Students = () => {
                   <TableCell className="text-center text-green-600 font-bold">
                     {s.umumiy_tolov} so&apos;m
                   </TableCell>
-                </TableRow>
+                </motion.tr>
               ))}
             </TableBody>
           </Table>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

@@ -75,6 +75,11 @@ export default function AppSidebar() {
   const { state } = useSidebar();
   const isCollapsed = state === "collapsed";
 
+  // Save sidebar state to localStorage
+  React.useEffect(() => {
+    localStorage.setItem("sidebar-collapsed", JSON.stringify(isCollapsed));
+  }, [isCollapsed]);
+
   return (
     <div className="pt-12">
       <Sidebar collapsible="icon" className="border-r">
@@ -104,18 +109,21 @@ export default function AppSidebar() {
                     >
                       <SidebarMenuButton
                         asChild
-                        tooltip={item.title}
+                        tooltip={{
+                          children: item.title,
+                          className: "bg-gray-900 text-gray-100 dark:bg-gray-800 dark:text-gray-100 dark:border dark:border-gray-700"
+                        }}
                         isActive={isActive}
                         size="lg"
                         className={`relative transition-all duration-200 hover:bg-accent ${
                           isActive
-                            ? "bg-blue-50 text-blue-600 border-r-2 border-blue-600 dark:bg-blue-950 dark:text-blue-400 dark:border-blue-400"
+                            ? "bg-blue-50 text-blue-600 dark:bg-blue-950 dark:text-blue-400"
                             : "hover:text-foreground"
                         }`}
                       >
                         <Link
                           href={item.url}
-                          className="flex items-center gap-2 w-full"
+                          className={`flex items-center w-full ${isCollapsed ? "justify-center px-0" : "gap-2 px-2"}`}
                         >
                           <motion.div
                             whileHover={{ scale: 1.1 }}
@@ -177,7 +185,10 @@ export default function AppSidebar() {
                 transition={{ type: "spring", stiffness: 400, damping: 17 }}
               >
                 <SidebarMenuButton
-                  tooltip="Universitet Yotoqxona"
+                  tooltip={{
+                    children: "Universitet Yotoqxona",
+                    className: "bg-gray-900 text-gray-100 dark:bg-gray-800 dark:text-gray-100 dark:border dark:border-gray-700"
+                  }}
                   size="lg"
                   className="transition-all duration-200"
                 >
